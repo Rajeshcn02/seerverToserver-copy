@@ -8,15 +8,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: SSH Server Deploy
-        uses: kostya-ten/ssh-server-deploy@v4
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          port: ${{ secrets.SERVER_PORT }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
-          scp_source: README.md
-          scp_target: ~/
-          before_script: |
-           sudo df -h
-          after_script: |
-           sudo whoami
+               host: ${{ secrets.HOST }}
+               username: ${{ secrets.USERNAME }}
+               port: ${{ secrets.PORT }}
+               key: ${{ secrets.KEY }}
+               source: "tests/a.txt,tests/b.txt"
+               target: "test"
