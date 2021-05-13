@@ -17,6 +17,6 @@ jobs:
           scp_source: README.md
           scp_target: ~/
           before_script: |
-            df -h
+           sudo df -h
           after_script: |
-            whoami
+           sudo whoami
